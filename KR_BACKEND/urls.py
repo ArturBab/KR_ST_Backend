@@ -22,7 +22,7 @@ urlpatterns = [
     path('api/article_del/<int:pk>/', ArticleAPIDelete.as_view()),
     path('api/author/', AuthorAPIPost.as_view()),
     path('api/authorAdm/', AuthorAPIAdmList.as_view()),
-    path('api/users/', UserAPIList.as_view()),
+    #path('api/users/', UserAPIList.as_view()),
     path('api/auth', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
