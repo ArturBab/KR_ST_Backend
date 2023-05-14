@@ -2,7 +2,7 @@ from krBackend.serializers import *
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import generics, mixins
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from .permissions import IsUserOrReadOnly, IsAdmin
+from .permissions import IsUserOrReadOnly, IsAuthorUpdate, IsAdmin
 
 
 class ArticleAPIListAndPost(generics.ListCreateAPIView):
@@ -11,16 +11,11 @@ class ArticleAPIListAndPost(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
-class ArticleAPIUpdate(generics.RetrieveUpdateAPIView):
+class ArticleAPIUpdate(generics.RetrieveUpdateAPIView,
+                       generics.RetrieveDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    permission_classes = (IsAuthenticated,)
-
-
-class ArticleAPIDelete(generics.RetrieveDestroyAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthorUpdate,)
 
 
 class AuthorAPIPost(generics.CreateAPIView):
@@ -35,10 +30,10 @@ class AuthorAPIAdmList(generics.ListAPIView):
     permission_classes = (IsAdmin,)
 
 
-class UserAPIList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (IsAdmin,)
+#class UserAPIList(generics.ListAPIView):
+#    queryset = User.objects.all()
+#    serializer_class = UserSerializer
+#    permission_classes = (IsAdmin,)
 
 #class ArticleViewSet(mixins.CreateModelMixin,
 #                     mixins.RetrieveModelMixin,
