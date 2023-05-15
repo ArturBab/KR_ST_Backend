@@ -7,6 +7,7 @@ class IsAuthorUpdateOnly(permissions.IsAuthenticated):
         if request.method in permissions.SAFE_METHODS:
             return True
 
+        # Если пользователь (или автор) тот самый, который создал свою запись -> True else False
         return obj.user == request.user
 
 
