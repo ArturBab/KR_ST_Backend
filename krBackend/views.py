@@ -54,6 +54,3 @@ class AuthorAPIAdmList(generics.ListAPIView):
 
 
 # Create your views here.
-
-
-# Create your views here.
