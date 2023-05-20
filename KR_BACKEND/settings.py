@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -125,6 +126,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+DEFAULT_FILE_STORAGE = 'krbackend.models.S3StorageClass'
+AWS_ACCESS_KEY_ID = 'minioadmin'
+AWS_SECRET_ACCESS_KEY = 'minioadmin'
+AWS_STORAGE_BUCKET_NAME = 'krbackend'
+AWS_S3_ENDPOINT_URL = 'http://192.168.1.103:9000'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
