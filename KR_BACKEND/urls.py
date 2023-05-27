@@ -3,9 +3,9 @@ from django.urls import path, include, re_path
 
 from krBackend.views import *
 
-from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from KR_BACKEND import s3_service
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -28,4 +28,5 @@ urlpatterns = [
     path('api/auth', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('s3_service', s3_service.serve),
 ]
